@@ -17,13 +17,13 @@
     @endif
     <div class="container-fluid pt-3">
         <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Barang</p>
+            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Produk</p>
             <ol class="breadcrumb breadcrumb-transparent mb-0">
                 <li class="breadcrumb-item">
                     <a href="/dashboard">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/barang">Barang</a>
+                    <a href="/product">Produk</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Edit
                 </li>
@@ -31,10 +31,10 @@
         </div>
         <div class="w-100 p-2">
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-11">
+                <div class="col-lg-5 col-md-6 col-sm-11">
                     <div class="card">
                         <div class="card-body">
-                            <form method="post" action="/barang/patch" enctype="multipart/form-data">
+                            <form method="post" action="/product/patch" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                 <div class="w-100 mb-1">

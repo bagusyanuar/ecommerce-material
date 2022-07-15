@@ -22,7 +22,7 @@
         </div>
         <div class="w-100 p-2">
             <div class="text-right mb-2 pr-3">
-                <a href="/barang/tambah" class="btn btn-primary"><i class="fa fa-plus mr-1"></i><span
+                <a href="/product/tambah" class="btn btn-primary"><i class="fa fa-plus mr-1"></i><span
                         class="font-weight-bold">Tambah</span></a>
             </div>
             <table id="table-data" class="display w-100 table table-bordered">
@@ -34,7 +34,7 @@
                     <th width="12%">Harga (Rp.)</th>
                     <th>Deskripsi</th>
                     <th>Gambar</th>
-                    <th width="20%" class="text-center">Action</th>
+                    <th width="15%" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <a href="/barang/edit/{{ $v->id }}" class="btn btn-sm btn-warning btn-edit"
+                            <a href="/product/edit/{{ $v->id }}" class="btn btn-sm btn-warning btn-edit"
                                data-id="{{ $v->id }}"><i class="fa fa-edit"></i></a>
                             <a href="#" class="btn btn-sm btn-danger btn-delete" data-id="{{ $v->id }}"><i
                                     class="fa fa-trash"></i></a>
@@ -77,7 +77,7 @@
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script type="text/javascript">
         function destroy(id) {
-            AjaxPost('/barang/delete', {id}, function () {
+            AjaxPost('/product/delete', {id}, function () {
                 window.location.reload();
             });
         }

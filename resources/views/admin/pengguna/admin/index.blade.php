@@ -29,9 +29,9 @@
                 <thead>
                 <tr>
                     <th width="5%" class="text-center">#</th>
-                    <th>Username</th>
+                    <th width="15%">Username</th>
                     <th>Hak Akses</th>
-                    <th width="20%" class="text-center">Action</th>
+                    <th width="12%" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,7 +68,7 @@
             $('.btn-delete').on('click', function (e) {
                 e.preventDefault();
                 let id = this.dataset.id;
-                AlertConfirm('Judul', 'Text', function () {
+                AlertConfirm('Apakah Anda Yakin Menghapus?', 'Data yang sudah di hapus tidak dapat di kembalikan!', function () {
                     destroy(id);
                 })
             });

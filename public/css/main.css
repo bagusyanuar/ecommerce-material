@@ -305,3 +305,6 @@ a.nav-link.active{
     z-index: 9999;
 }
 
+.sidebar-dark-primary{
+    background-color: #610C63 !important;
+}

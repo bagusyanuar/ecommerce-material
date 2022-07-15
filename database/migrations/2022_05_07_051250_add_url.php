@@ -13,7 +13,7 @@ class AddUrl extends Migration
      */
     public function up()
     {
-        Schema::table('barangs', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
             $table->text('gambar')->nullable()->after('deskripsi');
         });
@@ -26,7 +26,7 @@ class AddUrl extends Migration
      */
     public function down()
     {
-        Schema::table('barangs', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
             $table->dropColumn('gambar');
         });

@@ -30,7 +30,7 @@
                 <tr>
                     <th width="5%" class="text-center">#</th>
                     <th>Nama</th>
-                    <th width="20%" class="text-center">Action</th>
+                    <th width="15%" class="text-center">Action</th>
                 </tr>
                 </thead>
                 <tbody>

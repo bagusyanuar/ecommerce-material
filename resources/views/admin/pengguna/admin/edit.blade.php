@@ -31,7 +31,7 @@
         </div>
         <div class="w-100 p-2">
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-11">
+                <div class="col-lg-5 col-md-6 col-sm-11">
                     <div class="card">
                         <div class="card-body">
                             <form method="post" action="/admin/patch">
@@ -47,12 +47,12 @@
                                     <input type="password" class="form-control" id="password" placeholder="Password"
                                            name="password">
                                 </div>
-                                <div class="form-group w-100 mb-1">
-                                    <label for="role">Hak Akses</label>
-                                    <select class="form-control" id="role" name="role">
-                                        <option value="admin" {{ $data->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    </select>
-                                </div>
+{{--                                <div class="form-group w-100 mb-1">--}}
+{{--                                    <label for="role">Hak Akses</label>--}}
+{{--                                    <select class="form-control" id="role" name="role">--}}
+{{--                                        <option value="admin" {{ $data->role == 'admin' ? 'selected' : '' }}>Admin</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
                                 <div class="w-100 mb-2 mt-3 text-right">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>

@@ -74,7 +74,7 @@ class BarangController extends CustomController
                 $this->uploadImage('gambar', $nama_gambar, 'barang');
             }
             $barang->update($data);
-            return redirect('/barang')->with(['success' => 'Berhasil Merubah Data...']);
+            return redirect('/product')->with(['success' => 'Berhasil Merubah Data...']);
         } catch (\Exception $e) {
             return redirect()->back()->with(['failed' => 'Terjadi Kesalahan' . $e->getMessage()]);
         }

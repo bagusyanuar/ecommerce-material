@@ -43,7 +43,12 @@ class AuthController extends CustomController
                 'password' => $this->postField('password')
             ];
             if ($this->isAuth($credentials)) {
-                return redirect('/');
+                $role = \auth()->user()->role;
+                if ($role === 'admin') {
+                    return redirect('/dashboard');
+                } else {
+                    return redirect('/beranda');
+                }
             }
             return redirect()->back()->with('failed', 'Periksa Kembali Username dan Password Anda');
         }
@@ -71,7 +76,7 @@ class AuthController extends CustomController
                 DB::commit();
                 Auth::loginUsingId($user->id);
                 return redirect('/');
-            }catch (\Exception $e) {
+            } catch (\Exception $e) {
                 DB::rollBack();
                 return redirect()->back()->with('failed', 'Lengkapi Data Anda Dengan Benar');
             }
