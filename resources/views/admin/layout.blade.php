@@ -115,38 +115,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/penerimaan-reservasi"
+                                <a href="/pesanan"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Penerimaan Reservasi</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/reservasi"
-                                   class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Reservasi</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/proses-servis"
-                                   class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Proses Servis</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/selesai-servis"
-                                   class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Selesai Servis</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/reservasi-selesai"
-                                   class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Selesai</p>
+                                    <p>Pesanan</p>
                                 </a>
                             </li>
                         </ul>
@@ -161,10 +133,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="/laporan-reservasi"
+                                <a href="/laporan-pesanan"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Reservasi</p>
+                                    <p>Pesanan</p>
                                 </a>
                             </li>
                             <li class="nav-item">

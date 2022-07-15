@@ -15,13 +15,13 @@ class CreatePayment extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('transaction_id')->unsigned();
             $table->string('bank');
             $table->text('bukti');
             $table->integer('total')->default(0);
             $table->string('status');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('transaction_id')->references('id')->on('transactions');
         });
     }
 

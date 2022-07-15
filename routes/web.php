@@ -60,3 +60,9 @@ Route::group(['prefix' => 'product'], function () {
     Route::post( '/delete', [\App\Http\Controllers\Admin\BarangController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'pesanan'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PaymentController::class, 'index']);
+    Route::get( '/{id}/detail', [\App\Http\Controllers\Admin\PaymentController::class, 'detail']);
+
+});
+

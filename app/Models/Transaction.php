@@ -21,4 +21,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'transaction_id');
+    }
 }
