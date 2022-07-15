@@ -60,9 +60,32 @@ Route::group(['prefix' => 'product'], function () {
     Route::post( '/delete', [\App\Http\Controllers\Admin\BarangController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'kota'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\KotaController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\KotaController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\KotaController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\KotaController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\KotaController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\KotaController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'ongkir'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\OngkirController::class, 'index']);
+    Route::get( '/tambah', [\App\Http\Controllers\Admin\OngkirController::class, 'add_page']);
+    Route::post( '/create', [\App\Http\Controllers\Admin\OngkirController::class, 'create']);
+    Route::get( '/edit/{id}', [\App\Http\Controllers\Admin\OngkirController::class, 'edit_page']);
+    Route::post( '/patch', [\App\Http\Controllers\Admin\OngkirController::class, 'patch']);
+    Route::post( '/delete', [\App\Http\Controllers\Admin\OngkirController::class, 'destroy']);
+});
+
+
 Route::group(['prefix' => 'pesanan'], function () {
     Route::get( '/', [\App\Http\Controllers\Admin\PaymentController::class, 'index']);
     Route::get( '/{id}/detail', [\App\Http\Controllers\Admin\PaymentController::class, 'detail']);
 
+});
+
+Route::group(['prefix' => 'beranda'],  function (){
+    Route::get('/', [\App\Http\Controllers\Member\HomepageController::class, 'index']);
 });
 

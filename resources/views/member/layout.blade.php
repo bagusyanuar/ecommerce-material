@@ -28,11 +28,12 @@
     @yield('css')
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height: 75px">
+<nav class="navbar navbar-expand-lg navbar-dark"
+     style="height: 75px; background-color: #117d17; box-shadow: none !important;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="{{ asset('/assets/icon/brand-logo.png') }}" width="30" height="30" alt="">
-            <span>Marketplace</span>
+            <span>Material Kurnia</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,13 +45,10 @@
                     <a class="nav-link f-bold color-semi-white" aria-current="page" href="/">Beranda</a>
                 </li>
                 <li class="nav-item mr-1">
-                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/">Produk</a>
+                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/tentang">Tentang Kami</a>
                 </li>
                 <li class="nav-item mr-1">
-                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/">Tentang Kami</a>
-                </li>
-                <li class="nav-item mr-1">
-                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/">Hubungi Kami</a>
+                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/hubungi">Hubungi Kami</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">
@@ -61,8 +59,8 @@
                     </a>
                 @endguest
                 @auth()
-                    <a href="/cart" class="navbar-item f-12">
-                        <i class="fa fa-shopping-cart mr-2"></i>
+                    <a href="/transaksi" class="navbar-item f-12">
+                        <i class="fa fa-briefcase mr-2"></i>
                     </a>
                     <a href="/logout" class="navbar-item f-12 ml-3">
                         <i class="fa fa-power-off mr-1"></i>

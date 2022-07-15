@@ -1,28 +1,32 @@
 @extends('member.layout')
 
 @section('content')
-    <div class="banner-container">
-        <div class="your-class" style="width: 100%">
-            <img src="{{ asset('/assets/icon/banner-1.jpg') }}" alt="Gambar Banner" class="banner-item">
-            <img src="{{ asset('/assets/icon/banner-2.webp') }}" alt="Gambar Banner" class="banner-item">
-            <img src="{{ asset('/assets/icon/banner-3.jpg') }}" alt="Gambar Banner" class="banner-item">
-        </div>
-        <div class="banner-text-container">
-            <div class="d-flex justify-content-center align-items-center" style="height: 300px">
-                <p class="banner-text" style="opacity: 1">Selamat Datang Web Di E-Commerce </p>
-            </div>
-        </div>
+    <img src="{{ asset('/assets/icon/banner5.jpg') }}" style="width: 100%;" height="600">
+    <div class="text-center mt-3 mb-3">
+        <p class="font-weight-bold" style="font-size: 16px; letter-spacing: 1px; color: #117d17">Temukan Produk Material
+            Sesuai Kebutuhan Anda.</p>
+    </div>
+    <div class="text-center mt-3 mb-3">
+        <p class="font-weight-bold" style="font-size: 24px; letter-spacing: 1px; color: #117d17">Produk Material Di Toko
+            Kami.</p>
     </div>
     <div class="pl-5 pl-5 pt-2 pb-2 mt-3">
         <div class="row w-100">
             <div class="col-lg-2">
-                <p class="font-weight-bold">Kategori</p>
+                <div class="card" style="border-color: #117d17">
+                    <div class="card-header" style="background-color: #117d17 ">
+                        <p class="font-weight-bold mb-0" style="color: whitesmoke; font-size: 18px">Kategori</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach($categories as $category)
+                            <li class="list-group-item">
+                                <a href="/">{{ $category->nama }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
                 <ul class="list-group">
-                    @foreach($categories as $category)
-                        <a href="/">
-                            <li class="list-group-item">{{ $category->nama }}</li>
-                        </a>
-                    @endforeach
+
                 </ul>
             </div>
             <div class="col-lg-10">

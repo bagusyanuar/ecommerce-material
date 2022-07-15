@@ -103,6 +103,20 @@
                                     <p>Produk</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/kota"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Kota</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/ongkir"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Ongkos Kirim</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
