@@ -29,4 +29,10 @@ class Transaction extends Model
     {
         return $this->hasMany(Cart::class, 'transaction_id');
     }
+
+    public function waiting_payment()
+    {
+        return $this->hasOne(Payment::class, 'transaction_id')
+            ->orderBy('id', 'DESC');
+    }
 }

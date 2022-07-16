@@ -123,7 +123,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-briefcase"></i>
                             <p>
-                                Transaksi
+                                Pesanan
                                 <i class="right fa fa-angle-down"></i>
                             </p>
                         </a>
@@ -132,7 +132,28 @@
                                 <a href="/pesanan"
                                    class="nav-link">
                                     <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
-                                    <p>Pesanan</p>
+                                    <p>Baru</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pesanan-proses"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Di Packing</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pesanan-selesai-menunggu"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Ambil / Kirim</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/pesanan-selesai"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Selesai</p>
                                 </a>
                             </li>
                         </ul>

@@ -21,4 +21,11 @@ class TransaksiController extends CustomController
             ->get();
         return view('member.transaksi')->with(['data' => $data]);
     }
+
+    public function detail($id)
+    {
+        $data = Transaction::with(['user', 'cart.product'])->where('user_id', '=', Auth::id())
+            ->findOrFail($id);
+        return view('member.transaksi-detail')->with(['data' => $data]);
+    }
 }

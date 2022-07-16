@@ -15,16 +15,16 @@
             </li>
         </ol>
         <hr>
-        <div class="mt-5">
+        <div class="mt-5" style="min-height: 350px;">
             <table id="table-data" class="display w-100 table table-bordered">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">No. Transaksi</th>
-                    <th scope="col">Sub Total</th>
-                    <th scope="col">Ongkir</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Sub Total (Rp.)</th>
+                    <th scope="col">Ongkir (Rp.)</th>
+                    <th scope="col">Total (Rp.)</th>
                     <th scope="col">Status</th>
                     <th scope="col">action</th>
                 </tr>
@@ -38,13 +38,19 @@
                             {{ $v->no_transaksi }}
                         </td>
                         <td>{{ number_format($v->sub_total, 0, ',', '.') }}</td>
-                        <td>{{ number_format($v->onkir, 0, ',', '.') }}</td>
+                        <td>{{ number_format($v->ongkir, 0, ',', '.') }}</td>
                         <td>{{ number_format($v->total, 0, ',', '.') }}</td>
-                        <td>{{ ucwords($v->status) }}</td>
                         <td>
-                            <a href="/transaksi/{{ $v->id }}/detail" class="btn btn-sm btn-info btn-edit"
+                            @if($v->status == 'selesai-packing')
+                                {{ $v->keterangan != '' ? 'Barang Di Kirim' : 'Menunggu Di Ambil' }}
+                            @else
+                                {{ ucwords($v->status) }}
+                            @endif
+                        </td>
+                        <td>
+                            <a href="/beranda/transaksi/{{ $v->id }}/detail" class="btn btn-sm btn-info btn-edit"
                             ><i class="fa fa-info"></i></a>
-                            <a href="/transaksi/{{ $v->id }}/pembayaran" class="btn btn-sm btn-success"><i
+                            <a href="/beranda/pembayaran/{{ $v->id }}/detail" class="btn btn-sm btn-success"><i
                                     class="fa fa-credit-card"></i></a></td>
                     </tr>
                 @empty

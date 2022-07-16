@@ -81,8 +81,22 @@ Route::group(['prefix' => 'ongkir'], function () {
 
 Route::group(['prefix' => 'pesanan'], function () {
     Route::get( '/', [\App\Http\Controllers\Admin\PaymentController::class, 'index']);
-    Route::get( '/{id}/detail', [\App\Http\Controllers\Admin\PaymentController::class, 'detail']);
+    Route::match(['post', 'get'], '/{id}/detail', [\App\Http\Controllers\Admin\PaymentController::class, 'detail']);
+});
 
+Route::group(['prefix' => 'pesanan-proses'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PesananController::class, 'index']);
+    Route::match(['post', 'get'], '/{id}/detail', [\App\Http\Controllers\Admin\PesananController::class, 'detail']);
+});
+
+Route::group(['prefix' => 'pesanan-selesai-menunggu'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PesananController::class, 'ambil']);
+    Route::match(['post', 'get'], '/{id}/detail', [\App\Http\Controllers\Admin\PesananController::class, 'detail_ambil']);
+});
+
+Route::group(['prefix' => 'pesanan-selesai'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\PesananController::class, 'selesai']);
+    Route::match(['post', 'get'], '/{id}/detail', [\App\Http\Controllers\Admin\PesananController::class, 'detail_selesai']);
 });
 
 Route::group(['prefix' => 'beranda'],  function (){
@@ -104,6 +118,13 @@ Route::group(['prefix' => 'beranda'],  function (){
 
     Route::group(['prefix' => 'transaksi'], function (){
         Route::get('/', [\App\Http\Controllers\Member\TransaksiController::class, 'index']);
+        Route::get('/{id}/detail', [\App\Http\Controllers\Member\TransaksiController::class, 'detail']);
+    });
+
+    Route::group(['prefix' => 'pembayaran'], function (){
+        Route::get('/{id}/detail', [\App\Http\Controllers\Member\PembayaranController::class, 'detail']);
+        Route::post('/{id}/create', [\App\Http\Controllers\Member\PembayaranController::class, 'create']);
+        Route::get('/{id}/cetak', [\App\Http\Controllers\Member\PembayaranController::class, 'cetak']);
     });
 });
 

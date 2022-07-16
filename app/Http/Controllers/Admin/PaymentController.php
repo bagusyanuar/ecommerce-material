@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helper\CustomController;
 use App\Models\Payment;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends CustomController
 {
@@ -26,6 +28,29 @@ class PaymentController extends CustomController
     {
         $data = Payment::with(['transaction.user.member', 'transaction.cart.product'])
             ->findOrFail($id);
+        if ($this->request->method() === 'POST') {
+            try {
+                $status = $this->postField('status');
+                $keterangan = $this->postField('keterangan');
+                $data_payment = [
+                    'status' => $status,
+                    'keterangan' => $status === 'terima' ? '' : $keterangan
+                ];
+                $data->update($data_payment);
+                $transaction = Transaction::find($data->transaction_id);
+                $transaction->update([
+                    'status' => $status === 'terima' ? 'packing' : 'tolak'
+                ]);
+                DB::commit();
+                return redirect('/pesanan');
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return redirect()->back()->with(['failed' => 'Terjadi Kesalahan ' . $e->getMessage()]);
+            }
+
+        }
         return view('admin.transaksi.pesanan.detail')->with(['data' => $data]);
     }
+
+
 }

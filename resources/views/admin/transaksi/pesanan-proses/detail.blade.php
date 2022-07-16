@@ -17,15 +17,15 @@
     @endif
     <div class="container-fluid pt-3">
         <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Detail Pesanan</p>
+            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Detail Pesanan Di Proses</p>
             <ol class="breadcrumb breadcrumb-transparent mb-0">
                 <li class="breadcrumb-item">
                     <a href="/dashboard">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/pesanan">Pesanan</a>
+                    <a href="/pesanan-proses">Pesanan</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page"> Detail Pesanan
+                <li class="breadcrumb-item active" aria-current="page"> Detail Pesanan Di Proses
                 </li>
             </ol>
         </div>
@@ -34,13 +34,13 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <p class="font-weight-bold">Detail Pesanan</p>
+                            <p class="font-weight-bold">Detail Pesanan Di Proses</p>
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <span class="font-weight-bold">No. Transaksi</span>
                                 </div>
                                 <div class="col-lg-8 col-md-6">
-                                    <span class="font-weight-bold">: {{ $data->transaction->no_transaksi }}</span>
+                                    <span class="font-weight-bold">: {{ $data->no_transaksi }}</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -48,7 +48,7 @@
                                     <span class="font-weight-bold">Tanggal</span>
                                 </div>
                                 <div class="col-lg-8 col-md-6">
-                                    <span class="font-weight-bold">: {{ $data->transaction->tanggal }}</span>
+                                    <span class="font-weight-bold">: {{ $data->tanggal }}</span>
                                 </div>
                             </div>
                             <div class="row">
@@ -56,32 +56,19 @@
                                     <span class="font-weight-bold">Customer</span>
                                 </div>
                                 <div class="col-lg-8 col-md-6">
-                                    <span class="font-weight-bold">: {{ $data->transaction->user->member->nama }}</span>
+                                    <span class="font-weight-bold">: {{ $data->user->member->nama }}</span>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <span class="font-weight-bold">Pembayaran Via</span>
+                            @if($data->keterangan != '')
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <span class="font-weight-bold">Lokasi Pengiriman</span>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6">
+                                        <span class="font-weight-bold">: {{ $data->keterangan }}</span>
+                                    </div>
                                 </div>
-                                <div class="col-lg-8 col-md-6">
-                                    <span class="font-weight-bold">: {{ $data->bank }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="font-weight-bold">Detail Pembayaran</p>
-                            <div>
-                                <p class="font-weight-bold mb-1">Bukti Pembayaran</p>
-                                <a target="_blank"
-                                   href="{{ asset('assets/bukti')."/".$data->bukti }}">
-                                    <img src="{{  asset('assets/bukti')."/".$data->bukti }}" alt="Gambar Produk"
-                                         style="width: 185px; height: 185px; object-fit: cover">
-                                </a>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -98,7 +85,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($data->transaction->cart as $v)
+                @foreach($data->cart as $v)
                     <tr>
                         <td width="5%" class="text-center">{{ $loop->index + 1 }}</td>
                         <td>{{ $v->product->nama }}</td>
@@ -122,23 +109,34 @@
                                 </div>
                                 <div class="col-md-6 col-lg-6">
                                     <span class="font-weight-bold">
-                                        : Rp. {{ number_format($data->transaction->total, 0, ',', '.') }}
+                                        : Rp. {{ number_format($data->sub_total, 0, ',', '.') }}
                                     </span>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <span class="font-weight-bold">Ongkir</span>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <span class="font-weight-bold">
+                                        : Rp. {{ number_format($data->ongkir, 0, ',', '.') }}
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <span class="font-weight-bold">Total</span>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    <span class="font-weight-bold">
+                                        : Rp. {{ number_format($data->total, 0, ',', '.') }}
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
                             <form method="post">
                                 @csrf
-                                <div class="form-group w-100 mt-2">
-                                    <label for="status">Proses Pesanan</label>
-                                    <select class="form-control" id="status" name="status" required>
-                                        <option value="terima">Terima</option>
-                                        <option value="tolak">Tolak</option>
-                                    </select>
-                                </div>
-                                <div class="form-group w-100 d-none" id="reason">
-                                    <label for="deskripsi">Alasan</label>
-                                    <textarea class="form-control" rows="3" name="deskripsi" id="deskripsi"></textarea>
-                                </div>
                                 <button type="submit" class="btn btn-primary w-100" id="btn-submit">Submit
                                 </button>
                             </form>

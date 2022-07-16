@@ -12,6 +12,8 @@ class Payment extends Model
     protected $fillable = [
         'transaction_id',
         'bank',
+        'no_rekening',
+        'nama',
         'bukti',
         'total',
         'status',
