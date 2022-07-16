@@ -10,6 +10,10 @@ function ErrorAlert(title, msg) {
     Swal.fire(title, msg, 'error');
 }
 
+function SuccessAlert(title, msg) {
+    Swal.fire(title, msg, 'success');
+}
+
 function AlertConfirm(title = 'Apakah Anda Yakin?', text = 'Apa anda yakin melanjutkan proses', fn) {
     Swal.fire({
         title: title,
@@ -45,8 +49,8 @@ async function AjaxPost(url, param = {}, onSuccess = function () {
 
 function createLoader(text = 'sedang mengunduh data...', height = 600) {
     return '<div class="d-flex flex-column align-items-center justify-content-center" style="height: ' + height + 'px">' +
-        '<div class="spinner-border text-primary" role="status">\n' +
-        '  <span class="sr-only">Loading...</span>\n' +
+        '<div class="spinner-border text-primary" role="status" "style="color: #117d17;">\n' +
+        '  <span class="sr-only" style="color: #117d17;">Loading...</span>\n' +
         '</div>' +
         '<div>' + text + '</div>' +
         '</div>';

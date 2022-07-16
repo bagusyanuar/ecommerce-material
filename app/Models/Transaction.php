@@ -13,8 +13,11 @@ class Transaction extends Model
         'user_id',
         'tanggal',
         'no_transaksi',
+        'sub_total',
+        'ongkir',
         'total',
         'status',
+        'keterangan',
     ];
 
     public function user()

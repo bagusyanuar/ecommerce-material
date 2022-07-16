@@ -24,6 +24,11 @@
         body {
             font-family: 'Roboto', sans-serif;
         }
+
+        #dropdown-logout:hover {
+            color: whitesmoke;
+            text-decoration: none;
+        }
     </style>
     @yield('css')
 </head>
@@ -52,20 +57,29 @@
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                @guest()
-                    <a href="/login-member" class="navbar-item f-12">
-                        <i class="fa fa-user-o mr-2"></i>
-                        <span>Masuk / Daftar</span>
-                    </a>
-                @endguest
                 @auth()
-                    <a href="/transaksi" class="navbar-item f-12">
-                        <i class="fa fa-briefcase mr-2"></i>
-                    </a>
-                    <a href="/logout" class="navbar-item f-12 ml-3">
-                        <i class="fa fa-power-off mr-1"></i>
-                        <span>Keluar</span>
-                    </a>
+                    <div style="position: relative">
+                        <a href="/beranda/cart" class="navbar-item f-12">
+                            <i class="fa fa-shopping-cart mr-2"></i>
+                        </a>
+                        <div class="custom-badge d-none" id="cart-notif"></div>
+                    </div>
+                    <div class="dropdown ml-3">
+                        <a class="nav-link dropdown-toggle color-white" href="#" id="dropdown-logout" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ auth()->user()->username }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-logout">
+                            <a href="/beranda/transaksi" class="navbar-item f-12 ml-3" style="color: black">
+                                <span>Transaksi</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/logout" class="navbar-item f-12 ml-3" style="color: black">
+                                <i class="fa fa-power-off mr-1"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </div>
+                    </div>
                 @endauth
             </div>
         </div>
@@ -88,6 +102,7 @@
     </div>
 </div>
 @yield('content')
+<div class="footer"></div>
 <script src="{{ asset('/jQuery/jquery-3.4.1.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -112,5 +127,30 @@
 </script>
 <script src="{{ asset('/js/helper.js') }}"></script>
 @yield('js')
+@auth()
+    <script>
+        async function getCountCart() {
+            try {
+                let el = $('#cart-notif');
+                let response = await $.get('/beranda/cart/count');
+                let payload = response.payload;
+                if (payload > 0) {
+                    el.html(payload);
+                    el.removeClass('d-none');
+                    el.addClass('d-block');
+                } else {
+                    el.removeClass('d-block');
+                    el.addClass('d-none');
+                }
+                console.log(response);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        $(document).ready(function () {
+            getCountCart();
+        })
+    </script>
+@endauth
 </body>
 </html>

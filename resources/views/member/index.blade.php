@@ -3,11 +3,11 @@
 @section('content')
     <img src="{{ asset('/assets/icon/banner5.jpg') }}" style="width: 100%;" height="600">
     <div class="text-center mt-3 mb-3">
-        <p class="font-weight-bold" style="font-size: 16px; letter-spacing: 1px; color: #117d17">Temukan Produk Material
+        <p class="font-weight-bold" style="font-size: 16px; letter-spacing: 1px; color: #117d17">Temukan Produk Material Toilet
             Sesuai Kebutuhan Anda.</p>
     </div>
     <div class="text-center mt-3 mb-3">
-        <p class="font-weight-bold" style="font-size: 24px; letter-spacing: 1px; color: #117d17">Produk Material Di Toko
+        <p class="font-weight-bold" style="font-size: 24px; letter-spacing: 1px; color: #117d17">Produk Material Toilet Di Toko
             Kami.</p>
     </div>
     <div class="pl-5 pl-5 pt-2 pb-2 mt-3">
@@ -20,14 +20,11 @@
                     <ul class="list-group list-group-flush">
                         @foreach($categories as $category)
                             <li class="list-group-item">
-                                <a href="/">{{ $category->nama }}</a>
+                                <a href="/category/{{ $category->id }}" class="category-menu">{{ $category->nama }}</a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
-                <ul class="list-group">
-
-                </ul>
             </div>
             <div class="col-lg-10">
                 <div class="d-flex mb-3">
@@ -36,7 +33,7 @@
                                name="filter">
                     </div>
                     <div>
-                        <a href="#" class="btn btn-primary" id="btn-search"><i
+                        <a href="#" class="btn btn-success" id="btn-search"><i
                                 class="fa fa-search mr-1"></i><span>Cari</span></a>
                     </div>
                 </div>
@@ -45,13 +42,22 @@
                     <div class="row">
                         @foreach($data as $v)
                             <div class="col-lg-3 col-md-4 mb-4">
-                                <div class="card card-item" data-id="{{ $v->id }}" style="cursor: pointer">
+                                <div class="card card-item" data-id="{{ $v->id }}" style="cursor: pointer; height: 400px; border-color: #117d17">
                                     <img class="card-img-top" src="{{ asset('/assets/barang'). "/" . $v->gambar }}"
-                                         alt="Card image cap" height="150">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $v->nama }}</h5>
-                                        <p class="card-text">Rp. {{ $v->harga }}</p>
-                                        <a href="#" class="btn btn-sm btn-primary">Tambah Keranjang</a>
+                                         alt="Card image cap" height="200">
+                                    <div class="card-body" style="height: 200px">
+                                        <p class="card-title font-weight-bold elipsis-one text-green">{{ $v->nama }}</p>
+                                        <p class="text-green elipsis-two mb-0" style="color: #535961; font-size: 12px; height: 35px">{{ $v->deskripsi }}</p>
+                                        <p class="font-weight-bold text-green" style="font-size: 20px;">Rp. {{ number_format($v->harga, 0, ',', '.') }}</p>
+                                        <div class="d-flex w-100 justify-content-end">
+                                            <a href="#" class="btn btn-sm btn-circle mr-2">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-circle-fill">
+                                                <i class="fa fa-shopping-bag"></i>
+                                            </a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -74,12 +80,20 @@
 
         function singleProductElement(data) {
             return '<div class="col-lg-3 col-md-4 mb-4">' +
-                '<div class="card card-item" data-id="' + data['id'] + '" style="cursor: pointer">' +
-                '<img class="card-img-top"  src="/assets/barang/' + data['gambar'] + '" alt="Card image cap" height="150"/>' +
-                '<div class="card-body">' +
-                '<h5 class="card-title">' + data['nama'] + '</h5>' +
-                '<p class="card-text">Rp. ' + data['harga'] + '</p>' +
-                '<a href="#" class="btn btn-sm btn-primary">Tambah Keranjang</a>' +
+                '<div class="card card-item" data-id="' +data['id']+'" style="cursor: pointer; height: 400px; border-color: #117d17">' +
+                '<img class="card-img-top" src="/assets/barang/' + data['gambar'] + '" alt="Card image cap" height="200">' +
+                '<div class="card-body" style="height: 200px">' +
+                '<p class="card-title font-weight-bold elipsis-one text-green">' + data['nama'] + '</p>' +
+                '<p class="text-green elipsis-two mb-0" style="color: #535961; font-size: 12px; height: 35px">' + data['deskripsi'] + '</p>' +
+                '<p class="font-weight-bold text-green" style="font-size: 20px;">Rp. ' + formatUang(data['harga']) + '</p>' +
+                '<div class="d-flex w-100 justify-content-end">' +
+                '<a href="#" class="btn btn-sm btn-circle mr-2">' +
+                '<i class="fa fa-shopping-cart"></i>' +
+                '</a>' +
+                '<a href="#" class="btn btn-sm btn-circle-fill">' +
+                '<i class="fa fa-shopping-bag"></i>' +
+                '</a>' +
+                '</div>' +
                 '</div>' +
                 '</div>' +
                 '</div>';
@@ -99,7 +113,7 @@
             el.append(createLoader());
             let name = $('#filter').val();
             try {
-                let response = await $.get('/product/data?name=' + name);
+                let response = await $.get('/beranda/product/data?name=' + name);
                 el.empty();
                 if (response['status'] === 200) {
                     if (response['payload'].length > 0) {
@@ -120,7 +134,7 @@
         $(document).ready(function () {
             $('.card-item').on('click', function () {
                 let id = this.dataset.id;
-                window.location.href = '/product/' + id + '/detail';
+                window.location.href = '/beranda/product/' + id + '/detail';
             });
 
             $('#btn-search').on('click', function (e) {

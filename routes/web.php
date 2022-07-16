@@ -87,5 +87,23 @@ Route::group(['prefix' => 'pesanan'], function () {
 
 Route::group(['prefix' => 'beranda'],  function (){
     Route::get('/', [\App\Http\Controllers\Member\HomepageController::class, 'index']);
+
+    Route::group(['prefix' => 'product'], function (){
+        Route::get('/data', [\App\Http\Controllers\Member\ProductController::class, 'get_product_by_name']);
+        Route::get('/{id}/detail', [\App\Http\Controllers\Member\ProductController::class, 'detail']);
+    });
+
+    Route::group(['prefix' => 'cart'], function (){
+        Route::get('/', [\App\Http\Controllers\Member\KeranjangController::class, 'index']);
+        Route::post('/create', [\App\Http\Controllers\Member\KeranjangController::class, 'add_to_cart']);
+        Route::post('/destroy', [\App\Http\Controllers\Member\KeranjangController::class, 'delete_cart']);
+        Route::get('/count', [\App\Http\Controllers\Member\KeranjangController::class, 'count_cart']);
+        Route::post('/checkout', [\App\Http\Controllers\Member\KeranjangController::class, 'checkout']);
+        Route::get('/{id}/detail', [\App\Http\Controllers\Member\ProductController::class, 'detail']);
+    });
+
+    Route::group(['prefix' => 'transaksi'], function (){
+        Route::get('/', [\App\Http\Controllers\Member\TransaksiController::class, 'index']);
+    });
 });
 

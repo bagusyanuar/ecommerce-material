@@ -26,4 +26,17 @@ class ProductController extends CustomController
             return $this->jsonResponse('failed ' . $e->getMessage(), 500);
         }
     }
+
+    public function detail($id)
+    {
+        $data = Barang::with('category')->findOrFail($id);
+        $category_id = $data->category_id;
+        $id = $data->id;
+        $recommend = Barang::with('category')
+            ->where('id', '!=', $id)
+            ->where('category_id', '=', $category_id)
+            ->take(4)
+            ->get();
+        return view('member.product')->with(['data' => $data, 'recommend' => $recommend]);
+    }
 }
