@@ -1,11 +1,6 @@
 @extends('member.layout')
 
 @section('content')
-    <div id="overlay-loading">
-        <div class="d-flex justify-content-center align-items-center" id="overlay-loading-child">
-            <p class="font-weight-bold color-white">Sedang Menambah Keranjang....</p>
-        </div>
-    </div>
     <img src="{{ asset('/assets/icon/banner5.jpg') }}" style="width: 100%;" height="600">
     <div class="text-center mt-3 mb-3">
         <p class="font-weight-bold" style="font-size: 16px; letter-spacing: 1px; color: #117d17">Temukan Produk Material
@@ -27,13 +22,23 @@
                     <ul class="list-group list-group-flush">
                         @foreach($categories as $category)
                             <li class="list-group-item">
-                                <a href="/beranda/category/{{ $category->id }}" class="category-menu">{{ $category->nama }}</a>
+                                <a href="/beranda/category/{{ $category->id }}"
+                                   class="category-menu">{{ $category->nama }}</a>
                             </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-lg-10">
+                <div class="d-flex align-items-center justify-content-end mb-2">
+                    <ol class="breadcrumb breadcrumb-transparent mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="/beranda" class="category-menu">Beranda</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $current_category->nama }}
+                        </li>
+                    </ol>
+                </div>
                 <div class="d-flex mb-3">
                     <div class="flex-grow-1 mr-2">
                         <input type="text" class="form-control" id="filter" placeholder="Cari Nama barang"
@@ -77,6 +82,7 @@
 
 @section('js')
     <script>
+        var id = '{{ $current_category->id }}';
 
         function emptyElementProduct() {
             return '<div class="col-lg-12 col-md-12" >' +
@@ -114,7 +120,7 @@
             el.append(createLoader());
             let name = $('#filter').val();
             try {
-                let response = await $.get('/beranda/product/data?name=' + name);
+                let response = await $.get('/beranda/category/' + id + '/data?name=' + name);
                 el.empty();
                 if (response['status'] === 200) {
                     if (response['payload'].length > 0) {

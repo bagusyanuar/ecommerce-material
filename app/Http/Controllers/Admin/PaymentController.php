@@ -37,10 +37,24 @@ class PaymentController extends CustomController
                     'keterangan' => $status === 'terima' ? '' : $keterangan
                 ];
                 $data->update($data_payment);
-                $transaction = Transaction::find($data->transaction_id);
+                $transaction = Transaction::with('cart.product')->find($data->transaction_id);
                 $transaction->update([
                     'status' => $status === 'terima' ? 'packing' : 'tolak'
                 ]);
+                if($status === 'terima') {
+                    $cart = $transaction->cart;
+                    foreach ($cart as $c) {
+                        $current_qty = $c->product->qty;
+                        $qty = $c->qty;
+                        $sisa = $current_qty - $qty;
+                        if ($sisa < 0) {
+                            return redirect()->back()->with(['failed' => 'Sisa Stock Barang Kurang']);
+                        }
+                        $c->product()->update([
+                            'qty' => $sisa
+                        ]);
+                    }
+                }
                 DB::commit();
                 return redirect('/pesanan');
             } catch (\Exception $e) {

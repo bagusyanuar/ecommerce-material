@@ -66,7 +66,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <p class="font-weight-bold text-green mb-0" style="font-size: 20px;">Rekomendasi Produk</p>
                 @if(count($recommend) > 0)
-                    <a href="/category/{{ $recommend[0]->id }}" class="category-menu">
+                    <a href="/beranda/category/{{ $recommend[0]->id }}" class="category-menu">
                         Lihat Lainnya
                     </a>
                 @endif
@@ -85,13 +85,9 @@
                                    style="color: #535961; font-size: 12px; height: 35px">{{ $v->deskripsi }}</p>
                                 <p class="font-weight-bold text-green" style="font-size: 20px;">
                                     Rp. {{ number_format($v->harga, 0, ',', '.') }}</p>
-                                <div class="d-flex w-100 justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-circle mr-2">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-sm btn-circle-fill">
-                                        <i class="fa fa-shopping-bag"></i>
-                                    </a>
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <p class="text-green mb-0" style="color: #535961; font-size: 12px;">Stock
+                                        : {{ $v->qty }}</p>
                                 </div>
 
                             </div>
@@ -190,6 +186,11 @@
                 e.preventDefault();
                 addToCart(true);
             })
+
+            $('.card-item').on('click', function () {
+                let id = this.dataset.id;
+                window.location.href = '/beranda/product/' + id + '/detail';
+            });
         });
     </script>
 @endsection

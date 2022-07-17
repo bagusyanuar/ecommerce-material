@@ -99,8 +99,28 @@ Route::group(['prefix' => 'pesanan-selesai'], function () {
     Route::match(['post', 'get'], '/{id}/detail', [\App\Http\Controllers\Admin\PesananController::class, 'detail_selesai']);
 });
 
+Route::group(['prefix' => 'laporan-pembayaran'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pembayaran']);
+    Route::get( '/data', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pembayaran_data']);
+    Route::get( '/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pembayaran_cetak']);
+});
+
+Route::group(['prefix' => 'laporan-pesanan'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pesanan']);
+    Route::get( '/data', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pesanan_data']);
+    Route::get( '/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_pesanan_cetak']);
+});
+
+Route::group(['prefix' => 'laporan-stock'], function () {
+    Route::get( '/', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_stock']);
+    Route::get( '/data', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_stock_data']);
+    Route::get( '/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'laporan_stock_cetak']);
+});
+
 Route::group(['prefix' => 'beranda'],  function (){
     Route::get('/', [\App\Http\Controllers\Member\HomepageController::class, 'index']);
+    Route::get('/category/{id}', [\App\Http\Controllers\Member\HomepageController::class, 'category_page']);
+    Route::get('/category/{id}/data', [\App\Http\Controllers\Member\HomepageController::class, 'get_product_by_name_and_category']);
 
     Route::group(['prefix' => 'product'], function (){
         Route::get('/data', [\App\Http\Controllers\Member\ProductController::class, 'get_product_by_name']);

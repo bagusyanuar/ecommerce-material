@@ -118,7 +118,7 @@
                 });
                 blockLoading(false);
                 let payload = response['payload'];
-                window.location.href = '/transaksi/' + payload + '/pembayaran';
+                window.location.href = '/beranda/pembayaran/' + payload + '/detail';
             } catch (e) {
                 alert('Terjadi Kesalahan');
             }

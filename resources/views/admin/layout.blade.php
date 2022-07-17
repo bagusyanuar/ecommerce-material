@@ -181,6 +181,13 @@
                                     <p>Pembayaran</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/laporan-stock"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon" aria-hidden="true"></i>
+                                    <p>Stock</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </nav>
