@@ -57,6 +57,11 @@
                                            name="harga" value="{{ $data->harga }}">
                                 </div>
                                 <div class="w-100 mb-1">
+                                    <label for="qty" class="form-label">qty</label>
+                                    <input type="number" class="form-control" id="qty" placeholder="qty"
+                                           name="qty" value="{{ $data->qty }}">
+                                </div>
+                                <div class="w-100 mb-1">
                                     <label for="deskripsi" class="form-label">Deskripsi barang</label>
                                     <textarea type="text" class="form-control" id="deskripsi" placeholder="Deskripsi Barang"
                                               name="deskripsi" rows="3">{{ $data->deskripsi }}</textarea>
