@@ -50,10 +50,10 @@
                     <a class="nav-link f-bold color-semi-white" aria-current="page" href="/">Beranda</a>
                 </li>
                 <li class="nav-item mr-1">
-                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/tentang">Tentang Kami</a>
+                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/beranda/tentang">Tentang Kami</a>
                 </li>
                 <li class="nav-item mr-1">
-                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/hubungi">Hubungi Kami</a>
+                    <a class="nav-link f-bold color-semi-white" aria-current="page" href="/beranda/hubungi">Hubungi Kami</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">

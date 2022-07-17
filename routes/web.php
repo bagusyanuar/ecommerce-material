@@ -119,9 +119,11 @@ Route::group(['prefix' => 'laporan-stock'], function () {
 
 Route::group(['prefix' => 'beranda'],  function (){
     Route::get('/', [\App\Http\Controllers\Member\HomepageController::class, 'index']);
+
     Route::get('/category/{id}', [\App\Http\Controllers\Member\HomepageController::class, 'category_page']);
     Route::get('/category/{id}/data', [\App\Http\Controllers\Member\HomepageController::class, 'get_product_by_name_and_category']);
-
+    Route::get('/tentang', [\App\Http\Controllers\Member\HomepageController::class, 'about']);
+    Route::get('/hubungi', [\App\Http\Controllers\Member\HomepageController::class, 'contact']);
     Route::group(['prefix' => 'product'], function (){
         Route::get('/data', [\App\Http\Controllers\Member\ProductController::class, 'get_product_by_name']);
         Route::get('/{id}/detail', [\App\Http\Controllers\Member\ProductController::class, 'detail']);
