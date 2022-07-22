@@ -136,8 +136,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group w-100 d-none" id="reason">
-                                    <label for="deskripsi">Alasan</label>
-                                    <textarea class="form-control" rows="3" name="deskripsi" id="deskripsi"></textarea>
+                                    <label for="keterangan">Alasan</label>
+                                    <textarea class="form-control" rows="3" name="keterangan" id="keterangan"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100" id="btn-submit">Submit
                                 </button>

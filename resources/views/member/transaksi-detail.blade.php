@@ -51,9 +51,25 @@
                                 </div>
                                 <div class="w-50">
                                     <span class="detail-info">:</span>
-                                    <span class="detail-info">{{ $data->status }}</span>
+                                    <span class="detail-info">{{ $data->status }}
+
+                                    </span>
                                 </div>
                             </div>
+                            @if($data->waiting_payment->status == 'tolak')
+                                <div class="d-flex">
+                                    <div class="w-50">
+                                        <span class="detail-info">Alasan Di Tolak</span>
+                                    </div>
+                                    <div class="w-50">
+                                        <span class="detail-info">:</span>
+                                        <span class="detail-info">{{ $data->waiting_payment->keterangan }}
+
+                                    </span>
+                                    </div>
+                                </div>
+                            @endif
+
                             @if($data->keterangan != '')
                                 <div class="d-flex">
                                     <div class="w-50">
@@ -109,11 +125,12 @@
                     <div class="d-flex justify-content-between align-items-center mb-0">
                         <span class="w-50 font-weight-bold">Sub Total</span>
                         <span class="w-50 text-right font-weight-bold" id="lbl-sub-total"
-                              >Rp.  {{ number_format($data->sub_total, 0, ',', '.')  }}</span>
+                        >Rp.  {{ number_format($data->sub_total, 0, ',', '.')  }}</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <span class="w-50 font-weight-bold">Biaya Kirim</span>
-                        <span class="w-50 text-right font-weight-bold" id="lbl-ongkir">Rp. {{ number_format($data->ongkir, 0, ',', '.') }}</span>
+                        <span class="w-50 text-right font-weight-bold"
+                              id="lbl-ongkir">Rp. {{ number_format($data->ongkir, 0, ',', '.') }}</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between align-items-center">

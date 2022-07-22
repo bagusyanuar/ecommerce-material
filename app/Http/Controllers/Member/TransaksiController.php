@@ -24,7 +24,7 @@ class TransaksiController extends CustomController
 
     public function detail($id)
     {
-        $data = Transaction::with(['user', 'cart.product'])->where('user_id', '=', Auth::id())
+        $data = Transaction::with(['user', 'cart.product', 'waiting_payment'])->where('user_id', '=', Auth::id())
             ->findOrFail($id);
         return view('member.transaksi-detail')->with(['data' => $data]);
     }
