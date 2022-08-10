@@ -38,9 +38,14 @@
     </style>
 </head>
 <body>
-<div class="text-center f-bold report-title">NOTA PEMBELIAN MATERIAL TOKO KURNIA</div>
-<div class="text-center">
-    <span>Jl. Adi Sumarmo No. 18, Manahan, Surakarta</span>
+<div style="position: relative">
+    <img src={{ public_path('assets/icon/nota-logo.png') }} height="50" style="position: absolute; top: 0; left: 0">
+    <div>
+        <div class="text-center f-bold report-title">NOTA PEMBELIAN MATERIAL TOKO KURNIA</div>
+        <div class="text-center">
+            <span>Jl. Adi Sumarmo No. 18, Manahan, Surakarta</span>
+        </div>
+    </div>
 </div>
 <hr>
 <div class="row">
@@ -52,6 +57,8 @@
 <div class="row">
     <div class="col-xs-2">Nama</div>
     <div class="col-xs-3">: {{ $data->user->member->nama }}</div>
+    <div class="col-xs-2">Admin</div>
+    <div class="col-xs-3">: {{ $data->admin}}</div>
 </div>
 <hr>
 <table id="my-table" class="table display">

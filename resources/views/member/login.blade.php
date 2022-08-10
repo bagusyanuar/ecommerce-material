@@ -40,10 +40,6 @@
                         <div class="w-100 mb-2 mt-3">
                             <button type="submit" class="btn btn-primary w-100">Login</button>
                         </div>
-                        <div class="w-100" style="text-align: end">
-                            <a class="text-right" href="/register">Belum Punya Akun?</a>
-                        </div>
-
                     </form>
                 </div>
             </div>

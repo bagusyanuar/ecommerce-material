@@ -18,6 +18,7 @@ class Transaction extends Model
         'total',
         'status',
         'keterangan',
+        'admin',
     ];
 
     public function user()
